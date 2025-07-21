@@ -1,0 +1,414 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Fallback font configuration */
+@layer base {
+  :root {
+    --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+}
+
+:root {
+  /* Light theme colors */
+  --background: #ffffff;
+  --background-elevated: #f5f5f5;
+  --background-card: #ffffff;
+  --background-sidebar: #f1f3f4;
+
+  --accent-primary: #ff6b35;
+  --accent-primary-hover: #e55a2b;
+  --accent-secondary: #ff8c42;
+  --accent-tertiary: #ffa726;
+  --accent-success: #4caf50;
+  --accent-warning: #ff9800;
+  --accent-live: #ff6b35;
+
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --text-inverse: #ffffff;
+
+  --border-default: #e0e0e0;
+  --border-muted: #f0f0f0;
+  --border-accent: #ff6b35;
+
+  --status-live: #ff6b35;
+  --status-finished: #ff00003a;
+  --status-upcoming: #ff8c42;
+  --status-postponed: #ff9800;
+
+  --sport-football: #ff6b35;
+  --sport-basketball: #ff6b35;
+  --sport-tennis: #ff6b35;
+  --sport-volleyball: #ff6b35;
+  --sport-handball: #ff6b35;
+  --sport-baseball: #ff6b35;
+  --radius: 0.625rem;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  --primary: #ff6b35;
+  --primary-foreground: #ffffff;
+  --secondary: #f8f9fa;
+  --secondary-foreground: #1a1a1a;
+  --muted: #f8f9fa;
+  --muted-foreground: #999999;
+  --accent: #f8f9fa;
+  --accent-foreground: #1a1a1a;
+  --destructive: #dc3545;
+  --border: #e0e0e0;
+  --input: #ffffff;
+  --ring: #ff6b35;
+  --chart-1: #ff6b35;
+  --chart-2: #ff8c42;
+  --chart-3: #ffa726;
+  --chart-4: #ffb74d;
+  --chart-5: #ffcc02;
+  --sidebar: #f1f3f4;
+  --sidebar-foreground: #1a1a1a;
+  --sidebar-primary: #ff6b35;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f8f9fa;
+  --sidebar-accent-foreground: #1a1a1a;
+  --sidebar-border: #e0e0e0;
+  --sidebar-ring: #ff6b35;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-elevated: var(--background-elevated);
+  --color-background-card: var(--background-card);
+  --color-background-sidebar: var(--background-sidebar);
+
+  --color-orange-50: oklch(0.95 0.05 45);
+  --color-orange-100: oklch(0.88 0.10 44);
+  --color-orange-200: oklch(0.80 0.15 43);
+  --color-orange-300: oklch(0.75 0.18 42);
+  --color-orange-400: oklch(0.70 0.20 41.5);
+  --color-orange-500: oklch(0.648 0.222 41.07); /* Cor Base: #f83b01 */
+  --color-orange-600: oklch(0.58 0.21 40.5);
+  --color-orange-700: oklch(0.50 0.19 40);
+  --color-orange-800: oklch(0.40 0.15 39.5);
+  --color-orange-900: oklch(0.30 0.10 39);
+  --color-orange-950: oklch(0.20 0.06 38.5);
+
+
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-primary-hover: var(--accent-primary-hover);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-tertiary: var(--accent-tertiary);
+  --color-accent-success: var(--accent-success);
+  --color-accent-warning: var(--accent-warning);
+  --color-accent-live: var(--accent-live);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-inverse: var(--text-inverse);
+
+  --color-border-default: var(--border-default);
+  --color-border-muted: var(--border-muted);
+  --color-border-accent: var(--border-accent);
+
+  --color-status-live: var(--status-live);
+  --color-status-finished: var(--status-finished);
+  --color-status-upcoming: var(--status-upcoming);
+  --color-status-postponed: var(--status-postponed);
+
+  --color-sport-football: var(--sport-football);
+  --color-sport-basketball: var(--sport-basketball);
+  --color-sport-tennis: var(--sport-tennis);
+  --color-sport-volleyball: var(--sport-volleyball);
+  --color-sport-handball: var(--sport-handball);
+  --color-sport-baseball: var(--sport-baseball);
+
+  --font-sans: var(--font-inter);
+  
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --color-sidebar-border: var(--sidebar-border);
+
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+
+  --color-sidebar-accent: var(--sidebar-accent);
+
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+
+  --color-sidebar-primary: var(--sidebar-primary);
+
+  --color-sidebar-foreground: var(--sidebar-foreground);
+
+  --color-sidebar: var(--sidebar);
+
+  --color-chart-5: var(--chart-5);
+
+  --color-chart-4: var(--chart-4);
+
+  --color-chart-3: var(--chart-3);
+
+  --color-chart-2: var(--chart-2);
+
+  --color-chart-1: var(--chart-1);
+
+  --color-ring: var(--ring);
+
+  --color-input: var(--input);
+
+  --color-border: var(--border);
+
+  --color-destructive: var(--destructive);
+
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-accent: var(--accent);
+
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-muted: var(--muted);
+
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-secondary: var(--secondary);
+
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-primary: var(--primary);
+
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-popover: var(--popover);
+
+  --color-card-foreground: var(--card-foreground);
+
+  --color-card: var(--card);
+
+  --color-foreground: var(--foreground);
+
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --radius-md: calc(var(--radius) - 2px);
+
+  --radius-lg: var(--radius);
+
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+body {
+  color: var(--text-primary);
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Animações */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Pixel Transition Centralizado */
+.pixelBackground {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 5vw;
+  height: 100vh;
+}
+.block {
+  width: 100%;
+  height: 5vw;
+  background-color: #ff6a00;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+.mobile-only {
+  display: block;
+}
+
+.desktop-only {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .mobile-only {
+    display: none;
+  }
+  
+  .desktop-only {
+    display: block;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .hover\:bg-background-elevated:hover {
+    background-color: transparent;
+  }
+  
+  .hover\:text-text-primary:hover {
+    color: inherit;
+  }
+}
+
+/* Dark theme */
+.dark {
+  --background: #0a0a0a;
+  --background-elevated: #1a1a1a;
+  --background-card: #1a1a1a;
+  --background-sidebar: #1a1a1a;
+
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-muted: #666666;
+  --text-inverse: #0a0a0a;
+
+  --border-default: #333333;
+  --border-muted: #1a1a1a;
+  --border-accent: #ff6b35;
+
+  --status-live: #ff6b35;
+  --status-finished: #ff00003a;
+  --status-upcoming: #ff8c42;
+  --status-postponed: #ff9800;
+
+  --sport-football: oklch(0.6399 0.2299 33.97);
+  --sport-basketball: oklch(0.6399 0.2299 33.97);
+  --sport-tennis: oklch(0.6399 0.2299 33.97);
+  --sport-volleyball: oklch(0.6399 0.2299 33.97);
+  --sport-handball: oklch(0.6399 0.2299 33.97);
+  --sport-baseball: oklch(0.6399 0.2299 33.97);
+
+  --foreground: #ffffff;
+  --card: #1a1a1a;
+  --card-foreground: #ffffff;
+  --popover: #1a1a1a;
+  --popover-foreground: #ffffff;
+  --primary: #ff6b35;
+  --primary-foreground: #ffffff;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #ffffff;
+  --muted: #1a1a1a;
+  --muted-foreground: #666666;
+  --accent: #1a1a1a;
+  --accent-foreground: #ffffff;
+  --destructive: #dc3545;
+  --border: #333333;
+  --input: #1a1a1a;
+  --ring: #ff6b35;
+  --sidebar: #1a1a1a;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #ff6b35;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1a1a1a;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #333333;
+  --sidebar-ring: #ff6b35;
+}
+
+/* Page transition styles */
+.stairs {
+  .transition-container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    z-index: 2;
+    
+    div {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      background-color: #FF6B35;
+    }
+  }
+  
+  .transition-background {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: #FF6B35;
+    z-index: 1;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
