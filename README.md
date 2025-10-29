@@ -1,4 +1,4 @@
-# projetoX-main — Dashboard Esportivo (Interclasse)
+#Dashboard Esportivo (Interclasse)
 
 Um painel administrativo e frontend para gerenciar jogos, jogadores, turmas e eventos do Interclasse. Construído com Next.js (App Router), TypeScript, Tailwind e um conjunto de componentes UI reutilizáveis.
 
