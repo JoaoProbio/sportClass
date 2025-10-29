@@ -51,10 +51,14 @@ export default function NavigationHeader() {
           >
             {NAV_ITEMS.map((item) => {
               const active = isActive(pathname, item);
+              // Render the Jogos link to point to the home page (/) while keeping active
+              // detection based on the original nav item. This preserves visual active
+              // state even if the item href differs from the link target.
+              const linkHref = item.id === "jogos" ? "/" : item.href;
               return (
                 <li key={item.id} role="none">
                   <Link
-                    href={item.href}
+                    href={linkHref}
                     aria-label={getAriaLabel(item, active)}
                     aria-current={active ? "page" : undefined}
                     role="menuitem"

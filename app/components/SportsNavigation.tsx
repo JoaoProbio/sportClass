@@ -1,8 +1,9 @@
 "use client";
 
+import React from "react";
 import { useSport } from "../providers/SportContext";
 
-// Importe os ícones SVG como componentes React
+// SVG icons imported as React components (Next.js/webpack/svg loader required)
 import FutsalIcon from "@/public/icons/nav/soccer.svg";
 import BasqueteIcon from "@/public/icons/nav/basketball.svg";
 import VoleiIcon from "@/public/icons/nav/volleyball.svg";
@@ -28,70 +29,69 @@ export default function SportsNavigation({
     {
       id: "futsal",
       label: "Futsal",
-      IconComponent: FutsalIcon, // Use o componente importado
-      color: "text-sport-football",
+      Icon: FutsalIcon,
+      colorClass: "text-sport-football",
     },
     {
       id: "basquete",
       label: "Basquete",
-      IconComponent: BasqueteIcon,
-      color: "text-sport-basketball",
+      Icon: BasqueteIcon,
+      colorClass: "text-sport-basketball",
     },
     {
       id: "volei",
       label: "Vôlei",
-      IconComponent: VoleiIcon,
-      color: "text-sport-volleyball",
+      Icon: VoleiIcon,
+      colorClass: "text-sport-volleyball",
     },
     {
       id: "handebol",
       label: "Handebol",
-      IconComponent: HandebolIcon,
-      color: "text-sport-handball",
+      Icon: HandebolIcon,
+      colorClass: "text-sport-handball",
     },
     {
       id: "tenis-de-mesa",
       label: "Tênis de Mesa",
-      IconComponent: TenisDeMesaIcon,
-      color: "text-sport-tennis",
+      Icon: TenisDeMesaIcon,
+      colorClass: "text-sport-tennis",
     },
   ];
 
   const handleSportClick = (sportId: string) => {
     setActiveSport(sportId);
-    if (onSportFilter && showFilter) {
-      onSportFilter(sportId);
-    }
+    if (onSportFilter && showFilter) onSportFilter(sportId);
   };
 
   return (
-    <div>
-      <div className="flex gap-1 overflow-x-auto scrollbar-hide py-1 px-0 md:px-6">
-        {sports.map((sport) => {
-          // Renomeie para IconComponent para usar em JSX
-          const { IconComponent } = sport;
+    <nav aria-label="Navegação por modalidades">
+      <div className="flex gap-2 overflow-x-auto  py-2 px-2 w-full">
+        {sports.map(({ id, label, Icon, colorClass }) => {
+          const isActive = String(activeSport) === String(id);
+          const baseClasses =
+            "flex items-center gap-2 px-3 py-2 justify-between rounded-md whitespace-nowrap transition";
+          const activeClasses = isActive
+            ? "bg-primary-50 text-primary-700"
+            : "text-text-secondary hover:bg-background-card hover:text-text-primary";
           return (
             <button
-              key={sport.id}
-              onClick={() => handleSportClick(sport.id)}
-              className={`flex md:flex-row flex-col flex-1 md:flex-0 items-center gap-1 md:gap-2 px-2 md:px-4 py-2 md:py-0 md:mt-2 text-sm font-normal duration-75 whitespace-nowrap cursor-pointer rounded-sm transition-[opacity,background-color,transform] hover:opacity-80 active:scale-90 active:transition-[opacity,background-color,transform] active:duration-50 [&:not(:active)]:transition-[opacity,background-color,transform] [&:not(:active)]:duration-[83ms,83ms,167ms] outline-none outline-offset-0 outline-0 outline-[#00000000] ${
-                activeSport === sport.id
-                  // ? "text-primary-700 bg-primary-400/20"
-                  : "text-text-secondary hover:text-text-primary hover:bg-background-card"
-              }`}
+              key={id}
+              type="button"
+              aria-pressed={isActive}
+              onClick={() => handleSportClick(id)}
+              className={`${baseClasses} ${activeClasses}`}
             >
               <span
-                className={`py-2 flex items-center justify-center ${sport.color}`}
+                className={`flex items-center justify-center ${colorClass}`}
               >
-                {/* Renderize o componente de ícone e aplique classes de estilo */}
-                <IconComponent className="w-5 h-5 md:w-4 md:h-4" />
+                {/* use explicit value for aria-hidden to avoid invalid JSX boolean attribute */}
+                <Icon className="w-5 h-5" aria-hidden="true" />
               </span>
-
-              <span className="sm:inline">{sport.label}</span>
+              <span>{label}</span>
             </button>
           );
         })}
       </div>
-    </div>
+    </nav>
   );
 }
