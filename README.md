@@ -1,347 +1,244 @@
-# Dashboard Esportivo - Interclasse 2025
+# projetoX-main — Dashboard Esportivo (Interclasse)
 
-Um dashboard moderno e responsivo para acompanhar os jogos do interclasse escolar 2025, desenvolvido com Next.js 15 e seguindo um design system esportivo com paleta preto e laranja.
+Um painel administrativo e frontend para gerenciar jogos, jogadores, turmas e eventos do Interclasse. Construído com Next.js (App Router), TypeScript, Tailwind e um conjunto de componentes UI reutilizáveis.
 
-## 🏆 Características
-
-- **Design System Esportivo**: Interface escura com paleta preto e laranja
-- **Mobile-First**: Design responsivo otimizado para dispositivos móveis
-- **Fonte Inter**: Tipografia moderna e legível
-- **Menu com Ícones Esportivos**: Navegação intuitiva com emojis para diferentes modalidades
-- **Status em Tempo Real**: Indicadores visuais para jogos ao vivo, finalizados e programados
-- **Sistema de Favoritos**: Marque seus jogos favoritos para acompanhamento
-- **Filtros Inteligentes**: Filtre jogos por status, modalidade e favoritos
-- **Layout Responsivo**: Funciona perfeitamente em desktop, tablet e mobile
-- **Múltiplas Páginas**: Navegação completa entre diferentes seções
-- **Animações Suaves**: Transições e micro-interações com Framer Motion
-- **Tema Escuro**: Interface otimizada para visualização noturna
-
-## 📄 Páginas Disponíveis
-
-### 🏈 Página de Jogos (`/jogos`)
-- **Funcionalidades**: Lista completa de jogos com filtros
-- **Componentes**: Tabela responsiva, filtros por status, sistema de favoritos
-- **Dados**: Jogos ao vivo, finalizados, programados e adiados
-- **Responsividade**: Cards verticais no mobile, tabela completa no desktop
-
-### 🏆 Página de Classificação (`/classificacao`)
-- **Funcionalidades**: Tabelas de pontuação por modalidade
-- **Componentes**: Seletor de modalidade, tabela responsiva, legenda
-- **Dados**: Pontuação, vitórias, empates, derrotas, gols pró/contra
-- **Responsividade**: Layout compacto no mobile, tabela expandida no desktop
-
-### 📊 Página de Estatísticas (`/estatisticas`)
-- **Funcionalidades**: Análise detalhada de desempenho
-- **Componentes**: Artilheiros, assistências, goleiros, gráficos
-- **Dados**: Rankings individuais, distribuição de gols, médias
-- **Responsividade**: Cards informativos, gráficos adaptativos
-
-### 📅 Página de Calendário (`/calendario`)
-- **Funcionalidades**: Visualização cronológica de jogos
-- **Componentes**: Calendário por data, próximos jogos, estatísticas
-- **Dados**: Jogos organizados por data, horários, quadras
-- **Responsividade**: Layout vertical no mobile, grid no desktop
-
-## 🎨 Nova Paleta de Cores
-
-### Cores Principais
-- **Preto**: `#000000` (background principal)
-- **Laranja Primário**: `#ff6b35` (accent principal)
-- **Laranja Secundário**: `#ff8c42` (accent secundário)
-- **Laranja Terciário**: `#ffa726` (accent terciário)
-
-### Cores de Status
-- **Ao Vivo**: `#ff6b35` (laranja vibrante)
-- **Em Breve**: `#ff8c42` (laranja médio)
-- **Finalizado**: `#666666` (cinza)
-- **Adiado**: `#ff9800` (laranja claro)
-
-### Cores por Modalidade
-- **Futebol**: `#ff6b35` (laranja)
-- **Basquete**: `#ff8c42` (laranja médio)
-- **Vôlei**: `#ffa726` (laranja claro)
-- **Handebol**: `#ffb74d` (laranja suave)
-- **Tênis**: `#ffcc80` (laranja muito claro)
-- **Baseball**: `#ffe0b2` (laranja pastel)
-
-## 🎯 Modalidades Disponíveis
-
-- ⚽ Futebol
-- 🏀 Basquete
-- 🏐 Vôlei
-- 🤾 Handebol
-- 🎾 Tênis
-- 🏃 Atletismo
-- 🏊 Natação
-- ♟️ Xadrez
-
-## 📱 Responsividade Mobile-First
-
-### Breakpoints
-- **Mobile**: < 768px (padrão)
-- **Tablet**: 768px - 1024px
-- **Desktop**: > 1024px
-
-### Funcionalidades Mobile
-- **Menu Hambúrguer**: Navegação colapsável
-- **Sidebar Drawer**: Menu lateral deslizante
-- **Scroll Horizontal**: Navegação esportiva com scroll
-- **Cards Adaptativos**: Layout otimizado para touch
-- **Filtros Compactos**: Interface simplificada
-
-### Funcionalidades Desktop
-- **Sidebar Fixa**: Menu lateral sempre visível
-- **Layout Expandido**: Mais informações na tela
-- **Hover Effects**: Interações com mouse
-- **Grid Completo**: Tabela com todas as colunas
-
-## 🚀 Como Executar
-
-### Pré-requisitos
-- Node.js 18+ 
-- npm ou yarn
-
-### Instalação
-
-1. **Clone o repositório:**
-   ```bash
-   git clone <repository-url>
-   cd projetoX-main
-   ```
-
-2. **Instale as dependências:**
-   ```bash
-   npm install
-   ```
-
-3. **Execute o servidor de desenvolvimento:**
-   ```bash
-   npm run dev
-   ```
-
-4. **Acesse no navegador:**
-   ```
-   http://localhost:3000
-   ```
-
-### Scripts Disponíveis
-
-- `npm run dev` - Servidor de desenvolvimento
-- `npm run dev:turbo` - Servidor com Turbopack (mais rápido)
-- `npm run build` - Build de produção
-- `npm run start` - Servidor de produção
-- `npm run lint` - Verificação de código
-
-## 🛠️ Tecnologias Utilizadas
-
-### Core
-- **Next.js 15.3.4**: Framework React com App Router
-- **React 19.0.0**: Biblioteca de interface
-- **TypeScript 5**: Tipagem estática
-- **Tailwind CSS 4**: Estilização utilitária responsiva
-
-### UI/UX
-- **Radix UI**: Componentes acessíveis e customizáveis
-- **Framer Motion 12.19.1**: Animações e transições
-- **GSAP 3.13.0**: Animações avançadas
-- **Lucide React**: Ícones modernos
-- **Vaul**: Componente drawer
-
-### Utilitários
-- **clsx**: Classes condicionais
-- **class-variance-authority**: Variantes de componentes
-- **tailwind-merge**: Merge de classes Tailwind
-- **react-intersection-observer**: Observação de elementos
-- **next-themes**: Gerenciamento de temas
-
-### Desenvolvimento
-- **@tailwindcss/postcss**: PostCSS para Tailwind
-- **tw-animate-css**: Animações CSS para Tailwind
-
-## 📊 Estrutura do Projeto
-
-```
-projetoX-main/
-├── app/                          # App Router (Next.js 15)
-│   ├── components/               # Componentes da aplicação
-│   │   ├── AnimatePresenceWrapper.tsx
-│   │   ├── ErrorBoundary.tsx
-│   │   ├── GameDetailsDialog.tsx
-│   │   ├── GamesTable.tsx
-│   │   ├── LiveIndicator.tsx
-│   │   ├── MatchRow.tsx
-│   │   ├── NavigationHeader.tsx
-│   │   ├── NetworkStatus.tsx
-│   │   ├── PageLayout.tsx
-│   │   ├── Sidebar.tsx
-│   │   ├── SportsNavigation.tsx
-│   │   ├── TournamentBracket.tsx
-│   │   ├── TransitionLayout.tsx
-│   │   └── TurmaDialog.tsx
-│   ├── jogos/                    # Página de jogos
-│   │   └── page.tsx
-│   ├── classificacao/            # Página de classificação
-│   │   └── page.tsx
-│   ├── estatisticas/             # Página de estatísticas
-│   │   └── page.tsx
-│   ├── calendario/               # Página de calendário
-│   │   └── page.tsx
-│   ├── test-dialog/              # Página de teste
-│   │   └── page.tsx
-│   ├── providers/                # Context providers
-│   │   └── SportContext.tsx
-│   ├── globals.css               # Estilos globais
-│   ├── layout.tsx               # Layout da aplicação
-│   └── page.tsx                 # Página principal
-├── components/                   # Componentes compartilhados
-│   ├── motion-primitives/       # Componentes de animação
-│   │   └── magnetic.tsx
-│   └── ui/                      # Componentes UI (shadcn/ui)
-│       ├── alert.tsx
-│       ├── breadcrumb.tsx
-│       ├── button.tsx
-│       ├── collapsible.tsx
-│       ├── dotted-dialog.tsx
-│       ├── drawer.tsx
-│       ├── dropdown-menu.tsx
-│       ├── input.tsx
-│       └── table.tsx
-├── lib/                         # Utilitários
-│   ├── anim.ts                  # Animações
-│   ├── fetch-utils.ts           # Utilitários de fetch
-│   └── utils.ts                 # Utilitários gerais
-├── public/                      # Assets estáticos
-│   ├── *.svg                    # Ícones esportivos
-│   ├── *.png                    # Imagens
-│   └── favicon.ico
-├── components.json              # Configuração shadcn/ui
-├── next.config.ts              # Configuração Next.js
-├── tailwind.config.ts          # Configuração Tailwind
-├── tsconfig.json               # Configuração TypeScript
-├── package.json                # Dependências e scripts
-└── README.md                   # Documentação
-```
-
-## 🎨 Design System
-
-O projeto utiliza um design system completo com:
-
-### Configuração shadcn/ui
-- **Style**: New York
-- **Base Color**: Neutral
-- **CSS Variables**: Habilitadas
-- **Icon Library**: Lucide React
-
-### Variáveis CSS
-- **Cores de Background**: background, background-elevated, background-card, background-sidebar
-- **Cores de Accent**: accent-primary, accent-secondary, accent-tertiary, accent-success, accent-warning, accent-live
-- **Cores de Texto**: text-primary, text-secondary, text-muted, text-inverse
-- **Cores de Borda**: border-default, border-muted, border-accent
-- **Cores de Status**: status-live, status-finished, status-upcoming, status-postponed
-- **Cores Esportivas**: sport-football, sport-basketball, sport-tennis, sport-volleyball, sport-handball, sport-baseball
-
-### Tipografia
-- **Fonte Principal**: Inter (Google Fonts)
-- **Fallbacks**: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif
-
-### Animações
-- **Framer Motion**: Transições suaves entre páginas
-- **GSAP**: Animações complexas e sequenciais
-- **CSS Animations**: Pulse e outras animações básicas
-
-## ⚙️ Configuração
-
-### Next.js Config
-- **Image Optimization**: Desabilitada para melhor performance
-- **Trailing Slash**: Habilitado
-- **Turbopack**: Configurado para desenvolvimento
-- **Headers**: Configurações de segurança
-- **On-Demand Entries**: Otimização de memória
-
-### TypeScript Config
-- **Target**: ES2017
-- **Strict Mode**: Habilitado
-- **Module Resolution**: Bundler
-- **Path Mapping**: @/* para raiz do projeto
-
-### Tailwind Config
-- **Dark Mode**: Class-based
-- **Content Paths**: pages, components, app
-- **Custom Colors**: Sistema de cores esportivo
-- **Custom Spacing**: 15 (60px), 70 (280px)
-- **Custom Screens**: xs (475px) adicionado
-
-## 📱 Funcionalidades
-
-### Header de Navegação
-- **Mobile**: Menu hambúrguer com navegação colapsável
-- **Desktop**: Menu horizontal completo
-- Logo do interclasse com link para home
-- Menu principal com abas (Jogos, Classificação, Estatísticas, Calendário)
-- Ações do usuário (notificações, perfil)
-
-### Navegação Esportiva
-- **Mobile**: Scroll horizontal com ícones grandes
-- **Desktop**: Layout horizontal com labels
-- Filtros por modalidade esportiva
-- Ícones coloridos para cada esporte
-
-### Sidebar
-- **Mobile**: Drawer deslizante com overlay
-- **Desktop**: Sidebar fixa sempre visível
-- Lista de jogos favoritos
-- Navegação por turmas
-- Card promocional para eventos especiais
-
-### Layout Compartilhado
-- **PageLayout**: Componente reutilizável para todas as páginas
-- **Navegação Consistente**: Header e sidebar em todas as páginas
-- **Responsividade**: Adaptação automática para todos os dispositivos
-
-## 🎨 Personalização
-
-O design system está definido em múltiplos arquivos e pode ser facilmente personalizado:
-
-### Arquivos de Configuração
-- `sports_ui_design_system.json` - Sistema de design esportivo
-- `dark_ui_design_system.json` - Sistema de design escuro
-- `tournament_bracket_design.json` - Design do bracket de torneio
-
-### Personalização Disponível
-- Cores das modalidades esportivas
-- Tipografia e espaçamentos
-- Componentes e layouts
-- Animações e transições
-- Breakpoints responsivos
-
-## 🚀 Deploy
-
-### Vercel (Recomendado)
-1. Conecte seu repositório ao Vercel
-2. Configure as variáveis de ambiente se necessário
-3. Deploy automático a cada push
-
-### Outras Plataformas
-- **Netlify**: Compatível com Next.js
-- **Railway**: Deploy simples
-- **Docker**: Containerização disponível
-
-## 🤝 Contribuição
-
-1. Fork o projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
-
-## 📞 Suporte
-
-Para suporte, envie um email para [seu-email@exemplo.com] ou abra uma issue no repositório.
+Este README foi reescrito para incluir instruções de setup, variáveis de ambiente importantes, como testar funcionalidades (especialmente paginação/carregamento de jogadores), e dicas de troubleshooting para problemas recorrentes.
 
 ---
 
-**Desenvolvido com ❤️ para o Interclasse 2025**
+## Sumário
+
+- [Visão Geral](#vis%C3%A3o-geral)
+- [Requisitos](#requisitos)
+- [Instalação & execução local](#instala%C3%A7%C3%A3o--execu%C3%A7%C3%A3o-local)
+- [Principais variáveis de ambiente](#principais-vari%C3%A1veis-de-ambiente)
+- [Scripts úteis](#scripts-%C3%BAteis)
+- [Testes e QA manual](#testes-e-qa-manual)
+- [Depuração & Troubleshooting](#depura%C3%A7%C3%A3o--troubleshooting)
+- [API — expectativas e endpoints importantes](#api---expectativas-e-endpoints-importantes)
+- [Contribuição](#contribui%C3%A7%C3%A3o)
+- [Deploy](#deploy)
+- [Licença](#licen%C3%A7a)
+
+---
+
+## Visão Geral
+
+Este repositório contém a aplicação frontend administrativa e componentes compartilhados para:
+- Listar e gerenciar jogos (`/admin/games/manage/[id]`)
+- Gerenciar jogadores (`/admin/players`)
+- Criar/editar turmas e times
+- Registrar eventos de partidas (gols, cartões, substituições)
+- Painéis de relatórios (classificações, estatísticas)
+
+O frontend consome uma API REST (backend separado). Muitos componentes esperam endpoints específicos com formatos comuns (ver seção "API").
+
+---
+
+## Requisitos
+
+- Node.js 18+ (recomendado 18.x/20.x)
+- npm ou yarn
+- Git (para clonar o repo)
+- Backend ou mock que exponha os endpoints esperados (ver seção "API")
+
+---
+
+## Instalação & execução local
+
+1. Clone o repositório:
+```bash
+git clone <repo-url>
+cd projetoX-main
+```
+
+2. Instale dependências:
+```bash
+npm install
+# ou
+# yarn
+```
+
+3. Crie um arquivo `.env.local` (exemplo abaixo) com as variáveis necessárias.
+
+4. Execute em modo desenvolvimento:
+```bash
+npm run dev
+# abre em http://localhost:3000
+```
+
+5. Para build de produção:
+```bash
+npm run build
+npm run start
+```
+
+---
+
+## Principais variáveis de ambiente
+
+Coloque essas variáveis em `.env.local` (não commitar esse arquivo).
+
+- `NEXT_PUBLIC_API_BASE` — URL base do backend (ex.: `https://api.example.com`). Se não definido, o cliente tenta usar `https://mainone-ptsq.onrender.com` como fallback durante o desenvolvimento, mas a configuração correta é recomendada.
+- `NEXT_PUBLIC_API_DEBUG` — `true`|`false`. Quando `true`, o `apiClient` imprime logs detalhados de requisições, alternativas de 404 e tentativas de host fallback. Útil para diagnosticar 404/CORS.
+- `NEXT_PUBLIC_SENTRY_DSN` — (opcional) DSN do Sentry para monitoramento.
+- Outros segredos (tokens, chaves) devem ser configurados conforme ambiente (e não comitados).
+
+Exemplo minimal:
+```
+NEXT_PUBLIC_API_BASE=https://mainone-ptsq.onrender.com
+NEXT_PUBLIC_API_DEBUG=true
+```
+
+---
+
+## Scripts úteis (em `package.json`)
+
+- `npm run dev` — desenvolvimento
+- `npm run build` — build de produção
+- `npm run start` — start após build
+- `npm run lint` — linter
+- `npm run test` — (se houver testes configurados)
+
+---
+
+## Testes e QA manual
+
+Não há suíte de testes e2e padrão neste template; siga estas etapas para checar as partes críticas:
+
+1. Carregamento de jogadores (paginação)
+   - Abra `http://localhost:3000/admin/players`.
+   - Observe no DevTools (Network) chamadas a `/api/players?page=1...` e (se aplicável) `page=2`.
+   - Verifique se o frontend faz multiplas requisições até coletar todos os itens (ou até `pagination.totalPages`).
+
+2. Manage Game — verificar jogadores no formulário de evento
+   - Abra um jogo: `/admin/games/manage/<id>`.
+   - No formulário de eventos verifique:
+     - Os botões rápidos "Mostrar somente <time>" junto ao select de Time.
+     - O contador "visíveis / carregados" do select de Jogadores.
+     - Que os selects filtram jogadores corretamente ao selecionar um time.
+   - Ao adicionar um evento, confirme no Network que a POST para `/api/games/:id/events` tem o payload correto.
+
+3. Testar fallback do `apiClient`
+   - Para simular problemas de rewrite/CORS, defina `NEXT_PUBLIC_API_BASE` diferente do host atual e ative `NEXT_PUBLIC_API_DEBUG=true`.
+   - Observe console se o `apiClient` tenta alternativas (add/remove `/api`, trailing slash, host fallbacks).
+
+---
+
+## Depuração & Troubleshooting
+
+Abaixo estão os problemas mais comuns e como investigá-los.
+
+### 1) "Faltam jogadores" no Manage Game (caso que você relatou)
+Possíveis causas:
+- O `game` possui `time1.id` e `time2.id` diferentes dos `time.id` nos objetos `player.time`.
+  - Verifique `GET /api/games/:id` → checar `time1.id` e `time2.id`.
+  - Verifique `GET /api/players` para confirmar os `player.time.id`.
+- O frontend não carregou todas as páginas de `/api/players`.
+  - Verifique Network → chamadas `/api/players?page=...` e se `pagination.totalPages` indica mais páginas.
+- Jogadores com `time: null` dependem de resolução `turma->time`.
+  - O código tenta chamar `/api/turma-time/class/:turmaId/teams` para mapear `turmaId` → `timeId`. Se esse endpoint não existir/retornar vazio, os jogadores ficam sem `_resolvedTimeId` e não aparecem.
+- Diferença de IDs (tipos/strings vs numbers).
+  - O código faz comparações usando `String(...)` para maior tolerância, mas confirme que os IDs batem exatamente.
+
+Ações práticas:
+- No DevTools → Console, ative logs: defina `NEXT_PUBLIC_API_DEBUG=true` e recarregue a página para ver o que o `apiClient` tentou.
+- Verifique a resposta de `/api/players` (page 1 e page 2) e confirme se os jogadores esperados estão presentes no JSON.
+- Verifique se o endpoint `/api/turma-time/class/:turmaId/teams` existe e qual o retorno para o `turmaId` em questão.
+
+### 2) Requisições 404 repetidas para `/api/turmas/:id` ou caminhos com `:1`
+- Problema comum: IDs mal sanitizados (ex.: `":1"` com dois-pontos).
+- Solução: o frontend já sanitiza turmas antes de chamar `/api/turma-time/class/:turmaId/teams` (remove `:` e extrai dígitos). Se seu backend usa outro formato (string slug), ajuste a sanitização ou o endpoint.
+
+### 3) Erros CORS / host mismatch
+- Se o frontend roda em `http://localhost:3000` e a API em outro host, configure:
+  - `NEXT_PUBLIC_API_BASE` para apontar para a base correta, e
+  - garanta CORS no backend (origem permitida).
+- O `apiClient` tenta host-fallbacks quando encontra 404s — ótimo para debug, mas o fix definitivo é alinhar `NEXT_PUBLIC_API_BASE` e rewrites/proxy no Next.js.
+
+### 4) Como obter informações de debug do `apiClient`
+- Ative `NEXT_PUBLIC_API_DEBUG=true`.
+- Mensagens úteis que serão exibidas:
+  - `apiClient fetch: ...` — URL requisitada
+  - `apiClient 404, trying alternatives:` — caminhos alternativos testados
+  - `apiClient host alternative success:` — quando uma alternativa funcionou
+  - Para problemas de rede, o client também faz retries (configurado no código).
+
+---
+
+## API — expectativas e endpoints importantes
+
+O frontend espera (no mínimo) as seguintes rotas com formatos descritos:
+
+- `GET /api/games/:id`  
+  Retorna o jogo com `time1Id`, `time2Id`, `modalidadeId`, `placar`, etc.
+
+- `GET /api/games/:id/events`  
+  Lista de eventos do jogo (minuto, tipo, jogadorId, jogadorSubstituidoId, timeId, descricao).
+
+- `POST /api/games/:id/events`  
+  Adiciona evento — payload: `{ tipo, minuto, timeId, jogadorId, jogadorSubstituidoId, descricao }`.
+
+- `PATCH /api/games/:id/score`  
+  Atualiza placar — payload: `{ placarTime1, placarTime2 }`.
+
+- `GET /api/players?page=1&pageSize=50` (ou `limit`/`offset`)  
+  - O cliente aceita:
+    - Resposta como array (página) — `[ {...}, {...} ]`
+    - Objeto com `data: [...]` e `pagination` ou `meta` com `currentPage`/`totalPages`/`totalCount`
+  - Se seu backend usa `limit`/`offset`, a implementação de paginação do frontend já tenta ambos os estilos.
+
+- `GET /api/turma-time/class/:turmaId/teams`  
+  (opcional, usado para mapear `turmaId` → `timeId` quando o jogador não tem `timeId` explícito)
+
+Observação: Há alguma variação histórica nos endpoints (`/api/turmas`, `/api/classes` etc.). Recomenda-se padronizar o backend ou adicionar pequenos adaptadores no frontend.
+
+---
+
+## Boas práticas para desenvolvimento local
+
+- Mantenha `NEXT_PUBLIC_API_BASE` apontando para a API real em dev, ou use mocks locais se estiver offline.
+- Use `NEXT_PUBLIC_API_DEBUG=true` quando estiver investigando 404/CORS/pagination.
+- Se precisar testar pipelines sem backend, crie arquivos de mock JSON em `public/mocks/` e carregue condicionalmente (para desenvolvimento local).
+
+---
+
+## Contribuição
+
+1. Fork e branch: `git checkout -b feature/minha-feature`
+2. Commit atômico e claro (ex.: `feat(players): melhora paginação / fallback`)
+3. PR apontando ticket/descrição do que foi alterado
+4. Adicione testes ou instruções de teste quando possível
+
+---
+
+## Deploy
+
+- Recomendado: Vercel (configurar `NEXT_PUBLIC_API_BASE` nas Environment Variables do projeto)
+- Alternativas: Netlify, Railway, Docker
+- Certifique-se de:
+  - Definir variáveis de ambiente no ambiente de produção
+  - Configurar CORS no backend para domínios de produção
+
+---
+
+## Licença
+
+Projeto com licença MIT — ver `LICENSE` para mais detalhes.
+
+---
+
+## Contato / Suporte
+
+- Para suporte rápido adicione um issue no repositório com:
+  - Passos para reproduzir
+  - URLs relevantes (`/admin/games/manage/<id>`) e prints do console/Network
+  - Conteúdo (parte) das respostas de `GET /api/players` e `GET /api/games/:id`
+
+---
+
+Obrigado — se quiser eu:
+- gero um arquivo `public/mocks/players_page_2.json` com um exemplo de paginação (útil para desenvolvimento offline), ou
+- adiciono um painel de diagnóstico detalhado no `Manage Game` para listar jogadores sem `_resolvedTimeId` com exemplos das turmas que não foram mapeadas.
+  
+Diga qual prefere e eu preparo as instruções/patches correspondentes.
