@@ -11,10 +11,10 @@ class FetchError extends Error {
   constructor(
     message: string,
     public status?: number,
-    public statusText?: string
+    public statusText?: string,
   ) {
     super(message);
-    this.name = 'FetchError';
+    this.name = "FetchError";
   }
 }
 
@@ -23,9 +23,9 @@ class FetchError extends Error {
  */
 export async function safeFetch(
   url: string,
-  options: FetchOptions = {}
+  options: FetchOptions = {},
 ): Promise<Response> {
-  const { timeout = 10000, retries = 3, ...fetchOptions } = options;
+  const { timeout = 20000, retries = 1, ...fetchOptions } = options;
 
   let lastError: Error | undefined;
 
@@ -45,28 +45,28 @@ export async function safeFetch(
         throw new FetchError(
           `HTTP error! status: ${response.status}`,
           response.status,
-          response.statusText
+          response.statusText,
         );
       }
 
       return response;
     } catch (error) {
       lastError = error as Error;
-      
+
       // If it's the last attempt, throw the error
       if (attempt === retries) {
         break;
       }
 
       // Wait before retrying (exponential backoff)
-      await new Promise(resolve => 
-        setTimeout(resolve, Math.pow(2, attempt) * 1000)
+      await new Promise((resolve) =>
+        setTimeout(resolve, Math.pow(2, attempt) * 1000),
       );
     }
   }
 
   throw new FetchError(
-    `Failed to fetch after ${retries + 1} attempts: ${lastError?.message || 'Unknown error'}`
+    `Failed to fetch after ${retries + 1} attempts: ${lastError?.message || "Unknown error"}`,
   );
 }
 
@@ -75,20 +75,20 @@ export async function safeFetch(
  */
 export async function fetchJSON<T = any>(
   url: string,
-  options: FetchOptions = {}
+  options: FetchOptions = {},
 ): Promise<T> {
   try {
     const response = await safeFetch(url, {
       ...options,
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         ...options.headers,
       },
     });
 
     return await response.json();
   } catch (error) {
-    console.error('Error fetching JSON:', error);
+    console.error("Error fetching JSON:", error);
     throw error;
   }
 }
@@ -97,7 +97,7 @@ export async function fetchJSON<T = any>(
  * Check if the application is online
  */
 export function isOnline(): boolean {
-  return typeof navigator !== 'undefined' && navigator.onLine;
+  return typeof navigator !== "undefined" && navigator.onLine;
 }
 
 /**
@@ -105,27 +105,27 @@ export function isOnline(): boolean {
  */
 export function addNetworkListeners(
   onOnline?: () => void,
-  onOffline?: () => void
+  onOffline?: () => void,
 ): () => void {
-  if (typeof window === 'undefined') {
+  if (typeof window === "undefined") {
     return () => {};
   }
 
   const handleOnline = () => {
-    console.log('Application is back online');
+    console.log("Application is back online");
     onOnline?.();
   };
 
   const handleOffline = () => {
-    console.log('Application is offline');
+    console.log("Application is offline");
     onOffline?.();
   };
 
-  window.addEventListener('online', handleOnline);
-  window.addEventListener('offline', handleOffline);
+  window.addEventListener("online", handleOnline);
+  window.addEventListener("offline", handleOffline);
 
   return () => {
-    window.removeEventListener('online', handleOnline);
-    window.removeEventListener('offline', handleOffline);
+    window.removeEventListener("online", handleOnline);
+    window.removeEventListener("offline", handleOffline);
   };
-} 
+}

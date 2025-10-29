@@ -1,16 +1,16 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 const anim = {
   initial: { opacity: 1 },
   open: (i: number) => ({
     opacity: 0,
-    transition: { duration: 0, delay: 0.03 * i }
+    transition: { duration: 0, delay: 0.3 * i },
   }),
   closed: (i: number) => ({
     opacity: 1,
-    transition: { duration: 0, delay: 0.03 * i }
-  })
+    transition: { duration: 0, delay: 0.3 * i },
+  }),
 };
 
 interface PixelTransitionProps {
@@ -29,7 +29,10 @@ function shuffle<T>(a: T[]): T[] {
   return a;
 }
 
-const PixelTransition: React.FC<PixelTransitionProps> = ({ isActive, dimensions }) => {
+const PixelTransition: React.FC<PixelTransitionProps> = ({
+  isActive,
+  dimensions,
+}) => {
   const { width, height } = dimensions;
 
   const getBlocks = () => {
@@ -59,4 +62,4 @@ const PixelTransition: React.FC<PixelTransitionProps> = ({ isActive, dimensions 
   );
 };
 
-export default PixelTransition; 
+export default PixelTransition;

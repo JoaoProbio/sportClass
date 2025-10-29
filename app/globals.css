@@ -5,410 +5,530 @@
 
 /* Fallback font configuration */
 @layer base {
-  :root {
-    --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  }
+    :root {
+        --font-inter:
+            "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            "Helvetica Neue", Arial, sans-serif;
+    }
 }
 
 :root {
-  /* Light theme colors */
-  --background: #ffffff;
-  --background-elevated: #f5f5f5;
-  --background-card: #ffffff;
-  --background-sidebar: #f1f3f4;
+    /* Light theme colors (updated identity visual) */
+    --background: #fdfdfd;
+    --background-elevated: #f5f5f5;
+    --background-card: #ffffff;
+    --background-sidebar: #f1f3f4;
 
-  --accent-primary: #ff6b35;
-  --accent-primary-hover: #e55a2b;
-  --accent-secondary: #ff8c42;
-  --accent-tertiary: #ffa726;
-  --accent-success: #4caf50;
-  --accent-warning: #ff9800;
-  --accent-live: #ff6b35;
+    /* Primary palette (green) */
+    --primary-50: #e8f5e5;
+    --primary-100: #c8e6c0;
+    --primary-200: #a4d698;
+    --primary-300: #7fc76d;
+    --primary-400: #62bb4c;
+    --primary-500: #46ae27;
+    --primary-600: #3ca01e;
+    --primary-700: #2e8e11;
+    --primary-800: #207d01;
+    --primary-900: #005f00;
 
-  --text-primary: #1a1a1a;
-  --text-secondary: #666666;
-  --text-muted: #999999;
-  --text-inverse: #ffffff;
+    /* Secondary palette (grayscale) */
+    --secondary-50: #fafafa;
+    --secondary-100: #f3f3f3;
+    --secondary-200: #eaeaea;
+    --secondary-300: #dadada;
+    --secondary-400: #b7b7b7;
+    --secondary-500: #979797;
+    --secondary-600: #6f6f6f;
+    --secondary-700: #5b5b5b;
+    --secondary-800: #3c3c3c;
+    --secondary-900: #1c1c1c;
 
-  --border-default: #e0e0e0;
-  --border-muted: #f0f0f0;
-  --border-accent: #ff6b35;
+    /* Accent & semantic colors mapped to new palettes */
+    --accent-primary: var(--primary-500);
+    --accent-primary-hover: var(--primary-600);
+    --accent-secondary: var(--secondary-500);
+    --accent-tertiary: var(--secondary-300);
+    --accent-success: #10b981;
+    --accent-warning: #f59e0b;
+    --accent-live: var(--primary-500);
 
-  --status-live: #ff6b35;
-  --status-finished: #ff00003a;
-  --status-upcoming: #ff8c42;
-  --status-postponed: #ff9800;
+    /* Text */
+    --text-primary: var(--secondary-900);
+    --text-secondary: var(--secondary-700);
+    --text-muted: var(--secondary-600);
+    --text-inverse: #ffffff;
 
-  --sport-football: #ff6b35;
-  --sport-basketball: #ff6b35;
-  --sport-tennis: #ff6b35;
-  --sport-volleyball: #ff6b35;
-  --sport-handball: #ff6b35;
-  --sport-baseball: #ff6b35;
-  --radius: 0.625rem;
-  --foreground: #1a1a1a;
-  --card: #ffffff;
-  --card-foreground: #1a1a1a;
-  --popover: #ffffff;
-  --popover-foreground: #1a1a1a;
-  --primary: #ff6b35;
-  --primary-foreground: #ffffff;
-  --secondary: #f8f9fa;
-  --secondary-foreground: #1a1a1a;
-  --muted: #f8f9fa;
-  --muted-foreground: #999999;
-  --accent: #f8f9fa;
-  --accent-foreground: #1a1a1a;
-  --destructive: #dc3545;
-  --border: #e0e0e0;
-  --input: #ffffff;
-  --ring: #ff6b35;
-  --chart-1: #ff6b35;
-  --chart-2: #ff8c42;
-  --chart-3: #ffa726;
-  --chart-4: #ffb74d;
-  --chart-5: #ffcc02;
-  --sidebar: #f1f3f4;
-  --sidebar-foreground: #1a1a1a;
-  --sidebar-primary: #ff6b35;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f8f9fa;
-  --sidebar-accent-foreground: #1a1a1a;
-  --sidebar-border: #e0e0e0;
-  --sidebar-ring: #ff6b35;
+    /* Borders */
+    --border-default: var(--secondary-200);
+    --border-muted: var(--secondary-100);
+    --border-accent: var(--primary-500);
+
+    /* Status */
+    --status-live: var(--primary-500);
+    --status-finished: rgba(0, 0, 0, 0.12);
+    --status-upcoming: var(--primary-300);
+    --status-postponed: var(--secondary-400);
+
+    /* Sport colors -> use primary */
+    --sport-football: var(--primary-500);
+    --sport-basketball: var(--primary-500);
+    --sport-tennis: var(--primary-500);
+    --sport-volleyball: var(--primary-500);
+    --sport-handball: var(--primary-500);
+    --sport-baseball: var(--primary-500);
+
+    --radius: 0.625rem;
+
+    /* Legacy token mappings kept for compatibility, mapped to new palette */
+    --foreground: var(--text-primary);
+    --card: var(--background-card);
+    --card-foreground: var(--text-primary);
+    --popover: var(--background-card);
+    --popover-foreground: var(--text-primary);
+    --primary: var(--primary-500);
+    --primary-foreground: #ffffff;
+    --secondary: var(--secondary-50);
+    --secondary-foreground: var(--text-primary);
+    --muted: var(--secondary-50);
+    --muted-foreground: var(--text-muted);
+    --accent: var(--primary-50);
+    --accent-foreground: var(--text-primary);
+    --destructive: #dc3545;
+    --border: var(--border-default);
+    --input: #ffffff;
+    --ring: var(--primary-500);
+
+    /* Charts (map to primary / lighter accents) */
+    --chart-1: var(--primary-500);
+    --chart-2: var(--primary-300);
+    --chart-3: #7fc76d;
+    --chart-4: #b4e48a;
+    --chart-5: #dff7c9;
+
+    /* Sidebar tokens */
+    --sidebar: var(--background-sidebar);
+    --sidebar-foreground: var(--text-primary);
+    --sidebar-primary: var(--primary-500);
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: var(--secondary-50);
+    --sidebar-accent-foreground: var(--text-primary);
+    --sidebar-border: var(--border-default);
+    --sidebar-ring: var(--primary-500);
+
+    /* Color variants requested */
+    --color-variant-light: #f1ffc4;
+    --color-variant-orange: #f1ffc4;
+    --color-variant-darkGreen: #0d2610;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-background-elevated: var(--background-elevated);
-  --color-background-card: var(--background-card);
-  --color-background-sidebar: var(--background-sidebar);
+    --color-background: var(--background);
+    --color-background-elevated: var(--background-elevated);
+    --color-background-card: var(--background-card);
+    --color-background-sidebar: var(--background-sidebar);
 
-  --color-orange-50: oklch(0.95 0.05 45);
-  --color-orange-100: oklch(0.88 0.10 44);
-  --color-orange-200: oklch(0.80 0.15 43);
-  --color-orange-300: oklch(0.75 0.18 42);
-  --color-orange-400: oklch(0.70 0.20 41.5);
-  --color-orange-500: oklch(0.648 0.222 41.07); /* Cor Base: #f83b01 */
-  --color-orange-600: oklch(0.58 0.21 40.5);
-  --color-orange-700: oklch(0.50 0.19 40);
-  --color-orange-800: oklch(0.40 0.15 39.5);
-  --color-orange-900: oklch(0.30 0.10 39);
-  --color-orange-950: oklch(0.20 0.06 38.5);
+    --color-primary-50: var(--primary-50);
+    --color-primary-100: var(--primary-100);
+    --color-primary-200: var(--primary-200);
+    --color-primary-300: var(--primary-300);
+    --color-primary-400: var(--primary-400);
+    --color-primary-500: var(--primary-500);
+    --color-primary-600: var(--primary-600);
+    --color-primary-700: var(--primary-700);
+    --color-primary-800: var(--primary-800);
+    --color-primary-900: var(--primary-900);
+    --color-primary-950: var(--primary-900);
 
+    /* Secondary palette (grayscale) */
+    --color-secondary-50: #fafafa;
+    --color-secondary-100: #f3f3f3;
+    --color-secondary-200: #eaeaea;
+    --color-secondary-300: #dadada;
+    --color-secondary-400: #b7b7b7;
+    --color-secondary-500: #979797;
+    --color-secondary-600: #6f6f6f;
+    --color-secondary-700: #5b5b5b;
+    --color-secondary-800: #3c3c3c;
+    --color-secondary-900: #1c1c1c;
 
-  --color-accent-primary: var(--accent-primary);
-  --color-accent-primary-hover: var(--accent-primary-hover);
-  --color-accent-secondary: var(--accent-secondary);
-  --color-accent-tertiary: var(--accent-tertiary);
-  --color-accent-success: var(--accent-success);
-  --color-accent-warning: var(--accent-warning);
-  --color-accent-live: var(--accent-live);
+    /* Accent & semantic colors mapped to new palettes */
+    --color-accent-primary: var(--primary-500);
+    --color-accent-primary-hover: var(--primary-600);
+    --color-accent-secondary: var(--secondary-500);
+    --color-accent-tertiary: var(--secondary-300);
+    --color-accent-success: #10b981;
+    --color-accent-warning: #f59e0b;
+    --color-accent-live: var(--primary-500);
 
-  --color-text-primary: var(--text-primary);
-  --color-text-secondary: var(--text-secondary);
-  --color-text-muted: var(--text-muted);
-  --color-text-inverse: var(--text-inverse);
+    /* Text */
+    --color-text-primary: var(--secondary-900);
+    --color-text-secondary: var(--secondary-700);
+    --color-text-muted: var(--secondary-600);
+    --color-text-inverse: #ffffff;
 
-  --color-border-default: var(--border-default);
-  --color-border-muted: var(--border-muted);
-  --color-border-accent: var(--border-accent);
+    /* Borders */
+    --color-border-default: var(--secondary-200);
+    --color-border-muted: var(--secondary-100);
+    --color-border-accent: var(--primary-500);
 
-  --color-status-live: var(--status-live);
-  --color-status-finished: var(--status-finished);
-  --color-status-upcoming: var(--status-upcoming);
-  --color-status-postponed: var(--status-postponed);
+    /* Status */
+    --color-status-live: var(--primary-500);
+    --color-status-finished: rgba(0, 0, 0, 0.12);
+    --color-status-upcoming: var(--primary-300);
+    --color-status-postponed: var(--secondary-400);
 
-  --color-sport-football: var(--sport-football);
-  --color-sport-basketball: var(--sport-basketball);
-  --color-sport-tennis: var(--sport-tennis);
-  --color-sport-volleyball: var(--sport-volleyball);
-  --color-sport-handball: var(--sport-handball);
-  --color-sport-baseball: var(--sport-baseball);
+    /* Color variants requested */
+    --color-color-variant-light: #f1ffc4;
+    --color-color-variant-orange: #f7a003;
+    --color-color-variant-darkGreen: #0d2610;
 
-  --font-sans: var(--font-inter);
-  
-  --color-sidebar-ring: var(--sidebar-ring);
+    --color-accent-primary: var(--accent-primary);
+    --color-accent-primary-hover: var(--accent-primary-hover);
+    --color-accent-secondary: var(--accent-secondary);
+    --color-accent-tertiary: var(--accent-tertiary);
+    --color-accent-success: var(--accent-success);
+    --color-accent-warning: var(--accent-warning);
+    --color-accent-live: var(--accent-live);
 
-  --color-sidebar-border: var(--sidebar-border);
+    --color-text-primary: var(--text-primary);
+    --color-text-secondary: var(--text-secondary);
+    --color-text-muted: var(--text-muted);
+    --color-text-inverse: var(--text-inverse);
 
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-border-default: var(--border-default);
+    --color-border-muted: var(--border-muted);
+    --color-border-accent: var(--border-accent);
 
-  --color-sidebar-accent: var(--sidebar-accent);
+    --color-status-live: var(--status-live);
+    --color-status-finished: var(--status-finished);
+    --color-status-upcoming: var(--status-upcoming);
+    --color-status-postponed: var(--status-postponed);
 
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sport-football: var(--sport-football);
+    --color-sport-basketball: var(--sport-basketball);
+    --color-sport-tennis: var(--sport-tennis);
+    --color-sport-volleyball: var(--sport-volleyball);
+    --color-sport-handball: var(--sport-handball);
+    --color-sport-baseball: var(--sport-baseball);
 
-  --color-sidebar-primary: var(--sidebar-primary);
+    --font-sans: var(--font-inter);
 
-  --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-ring: var(--sidebar-ring);
 
-  --color-sidebar: var(--sidebar);
+    --color-sidebar-border: var(--sidebar-border);
 
-  --color-chart-5: var(--chart-5);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
 
-  --color-chart-4: var(--chart-4);
+    --color-sidebar-accent: var(--sidebar-accent);
 
-  --color-chart-3: var(--chart-3);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
 
-  --color-chart-2: var(--chart-2);
+    --color-sidebar-primary: var(--sidebar-primary);
 
-  --color-chart-1: var(--chart-1);
+    --color-sidebar-foreground: var(--sidebar-foreground);
 
-  --color-ring: var(--ring);
+    --color-sidebar: var(--sidebar);
 
-  --color-input: var(--input);
+    --color-chart-5: var(--chart-5);
 
-  --color-border: var(--border);
+    --color-chart-4: var(--chart-4);
 
-  --color-destructive: var(--destructive);
+    --color-chart-3: var(--chart-3);
 
-  --color-accent-foreground: var(--accent-foreground);
+    --color-chart-2: var(--chart-2);
 
-  --color-accent: var(--accent);
+    --color-chart-1: var(--chart-1);
 
-  --color-muted-foreground: var(--muted-foreground);
+    --color-ring: var(--ring);
 
-  --color-muted: var(--muted);
+    --color-input: var(--input);
 
-  --color-secondary-foreground: var(--secondary-foreground);
+    --color-border: var(--border);
 
-  --color-secondary: var(--secondary);
+    --color-destructive: var(--destructive);
 
-  --color-primary-foreground: var(--primary-foreground);
+    --color-accent-foreground: var(--accent-foreground);
 
-  --color-primary: var(--primary);
+    --color-accent: var(--accent);
 
-  --color-popover-foreground: var(--popover-foreground);
+    --color-muted-foreground: var(--muted-foreground);
 
-  --color-popover: var(--popover);
+    --color-muted: var(--muted);
 
-  --color-card-foreground: var(--card-foreground);
+    --color-secondary-foreground: var(--secondary-foreground);
 
-  --color-card: var(--card);
+    --color-secondary: var(--secondary);
 
-  --color-foreground: var(--foreground);
+    --color-primary-foreground: var(--primary-foreground);
 
-  --radius-sm: calc(var(--radius) - 4px);
+    --color-primary: var(--primary);
 
-  --radius-md: calc(var(--radius) - 2px);
+    --color-popover-foreground: var(--popover-foreground);
 
-  --radius-lg: var(--radius);
+    --color-popover: var(--popover);
 
-  --radius-xl: calc(var(--radius) + 4px);
+    --color-card-foreground: var(--card-foreground);
+
+    --color-card: var(--card);
+
+    --color-foreground: var(--foreground);
+
+    --radius-sm: calc(var(--radius) - 4px);
+
+    --radius-md: calc(var(--radius) - 2px);
+
+    --radius-lg: var(--radius);
+
+    --radius-xl: calc(var(--radius) + 4px);
 }
 
 body {
-  color: var(--text-primary);
-  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
+    color: var(--text-primary);
+    font-family:
+        var(--font-inter),
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 /* Animações */
 @keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
 }
 
 .pulse {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 /* Pixel Transition Centralizado */
 .pixelBackground {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  pointer-events: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    pointer-events: none;
 }
 .column {
-  display: flex;
-  flex-direction: column;
-  width: 5vw;
-  height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 5vw;
+    height: 100vh;
 }
 .block {
-  width: 100%;
-  height: 5vw;
-  background-color: #ff6a00;
+    width: 100%;
+    height: 5vw;
+    background-color: var(--primary-600);
 }
 
 /* Scrollbar styles */
 ::-webkit-scrollbar {
-  width: 6px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+    background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 3px;
+    background: #d1d5db;
+    border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
+    background: #9ca3af;
 }
 
 .scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 @media (max-width: 768px) {
-  body {
-    font-size: 14px;
-  }
+    body {
+        font-size: 14px;
+    }
 }
 
 .mobile-only {
-  display: block;
+    display: block;
 }
 
 .desktop-only {
-  display: none;
+    display: none;
 }
 
 @media (min-width: 768px) {
-  .mobile-only {
-    display: none;
-  }
-  
-  .desktop-only {
-    display: block;
-  }
+    .mobile-only {
+        display: none;
+    }
+
+    .desktop-only {
+        display: block;
+    }
 }
 
 /* Reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
 
 /* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
-  .hover\:bg-background-elevated:hover {
-    background-color: transparent;
-  }
-  
-  .hover\:text-text-primary:hover {
-    color: inherit;
-  }
+    .hover\:bg-background-elevated:hover {
+        background-color: transparent;
+    }
+
+    .hover\:text-text-primary:hover {
+        color: inherit;
+    }
 }
 
 /* Dark theme */
 .dark {
-  --background: #0a0a0a;
-  --background-elevated: #1a1a1a;
-  --background-card: #1a1a1a;
-  --background-sidebar: #1a1a1a;
+    /* Dark theme mapped to new identity palette (dark green base) */
+    --background: #0d2610; /* color-variant-darkGreen */
+    --background-elevated: #08160a;
+    --background-card: #07120b;
+    --background-sidebar: #07120b;
 
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0a0;
-  --text-muted: #666666;
-  --text-inverse: #0a0a0a;
+    --text-primary: #f7fff6;
+    --text-secondary: #d4e8cc;
+    --text-muted: var(--secondary-600);
+    --text-inverse: #07120b;
 
-  --border-default: #333333;
-  --border-muted: #1a1a1a;
-  --border-accent: #ff6b35;
+    --border-default: var(--secondary-800);
+    --border-muted: var(--secondary-900);
+    --border-accent: var(--primary-500);
 
-  --status-live: #ff6b35;
-  --status-finished: #ff00003a;
-  --status-upcoming: #ff8c42;
-  --status-postponed: #ff9800;
+    --status-live: var(--primary-500);
+    --status-finished: rgba(255, 255, 255, 0.06);
+    --status-upcoming: var(--primary-300);
+    --status-postponed: var(--secondary-400);
 
-  --sport-football: oklch(0.6399 0.2299 33.97);
-  --sport-basketball: oklch(0.6399 0.2299 33.97);
-  --sport-tennis: oklch(0.6399 0.2299 33.97);
-  --sport-volleyball: oklch(0.6399 0.2299 33.97);
-  --sport-handball: oklch(0.6399 0.2299 33.97);
-  --sport-baseball: oklch(0.6399 0.2299 33.97);
+    /* Sport colors -> use primary as accent even in dark */
+    --sport-football: var(--primary-500);
+    --sport-basketball: var(--primary-500);
+    --sport-tennis: var(--primary-500);
+    --sport-volleyball: var(--primary-500);
+    --sport-handball: var(--primary-500);
+    --sport-baseball: var(--primary-500);
 
-  --foreground: #ffffff;
-  --card: #1a1a1a;
-  --card-foreground: #ffffff;
-  --popover: #1a1a1a;
-  --popover-foreground: #ffffff;
-  --primary: #ff6b35;
-  --primary-foreground: #ffffff;
-  --secondary: #1a1a1a;
-  --secondary-foreground: #ffffff;
-  --muted: #1a1a1a;
-  --muted-foreground: #666666;
-  --accent: #1a1a1a;
-  --accent-foreground: #ffffff;
-  --destructive: #dc3545;
-  --border: #333333;
-  --input: #1a1a1a;
-  --ring: #ff6b35;
-  --sidebar: #1a1a1a;
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #ff6b35;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #1a1a1a;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #333333;
-  --sidebar-ring: #ff6b35;
+    --foreground: var(--text-primary);
+    --card: var(--background-card);
+    --card-foreground: var(--text-primary);
+    --popover: var(--background-card);
+    --popover-foreground: var(--text-primary);
+    --primary: var(--primary-500);
+    --primary-foreground: #ffffff;
+    --secondary: var(--secondary-900);
+    --secondary-foreground: var(--text-primary);
+    --muted: var(--secondary-900);
+    --muted-foreground: var(--text-muted);
+    --accent: var(--primary-50);
+    --accent-foreground: var(--text-primary);
+    --destructive: #dc3545;
+    --border: var(--border-default);
+    --input: #07120b;
+    --ring: var(--primary-500);
+    --sidebar: var(--background-sidebar);
+    --sidebar-foreground: var(--text-primary);
+    --sidebar-primary: var(--primary-500);
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: var(--secondary-900);
+    --sidebar-accent-foreground: var(--text-primary);
+    --sidebar-border: var(--border-default);
+    --sidebar-ring: var(--primary-500);
 }
 
 /* Page transition styles */
 .stairs {
-  .transition-container {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    left: 0;
-    top: 0;
-    pointer-events: none;
-    z-index: 2;
-    
-    div {
-      position: relative;
-      height: 100%;
-      width: 100%;
-      background-color: #FF6B35;
+    .transition-container {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        left: 0;
+        top: 0;
+        pointer-events: none;
+        z-index: 2;
+
+        div {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            background-color: #ff6b35;
+        }
     }
-  }
-  
-  .transition-background {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    background-color: #FF6B35;
-    z-index: 1;
-    pointer-events: none;
-    top: 0;
-    left: 0;
-  }
+
+    /* Styles for Line Animation */
+    .l-wrapper {
+        /* Estas classes Tailwind já foram adicionadas no componente LineAnimation.tsx,
+         mas estou listando-as aqui para referência.
+         absolute inset-0 overflow-hidden pointer-events-none */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 0; /* Colocar a animação no fundo */
+    }
+
+    .l-line {
+        font-family:
+            "monospace", monospace; /* Fonte monoespaçada para consistência */
+        font-size: 1rem; /* Tamanho da fonte */
+        line-height: 1.2;
+        white-space: pre; /* Preservar espaços em branco e quebras de linha */
+        color: #555; /* Cor padrão para os '_' antes da animação */
+    }
+
+    /* Estilo para os spans dentro das linhas animadas */
+    .l-line span {
+        display: inline-block; /* Garante que os spans se comportem como parte do texto */
+    }
+
+    .transition-background {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background-color: #ff6b35;
+        z-index: 1;
+        pointer-events: none;
+        top: 0;
+        left: 0;
+    }
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+    * {
+        @apply border-border outline-ring/50;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
 }

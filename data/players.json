@@ -1,0 +1,20 @@
+[
+  {
+    "dbId": 1,
+    "nome": "Lucas Veloso",
+    "numeroCamisa": null,
+    "genero": "Masculino",
+    "turmaNome": "Ano",
+    "modalidades": [
+      "Basquete"
+    ],
+    "stats": {
+      "gols": 0,
+      "cartoesAmarelos": 0,
+      "cartoesVermelhos": 0,
+      "jogos": 0
+    },
+    "createdAt": "2025-10-25T20:55:39.628Z",
+    "updatedAt": "2025-10-25T20:55:46.375Z"
+  }
+]

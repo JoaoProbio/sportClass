@@ -2,13 +2,25 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Trophy, GitBranch, BarChart2, Calendar } from "lucide-react";
+import { MOBILE_NAV_ITEMS, isActive, getAriaLabel } from "./navConfig";
 
-const navItems = [
-  { href: "/jogos", label: "Jogos", icon: Trophy },
-  { href: "/chaveamento", label: "Chaveamento", icon: GitBranch },
-  { href: "/estatisticas", label: "Estatísticas", icon: BarChart2 },
-  { href: "/calendario", label: "Calendário", icon: Calendar },
-];
+/**
+ * BottomNavBar
+ *
+ * - Uses the shared MOBILE_NAV_ITEMS configuration so labels/hrefs stay in sync
+ *   with the header.
+ * - Maps `iconName` strings to lucide-react icon components.
+ * - Uses centralized `isActive` logic so highlighting matches the header.
+ * - Improved accessibility: explicit aria-current when active, clearer labels
+ *   and focusable areas.
+ */
+
+const ICON_MAP: Record<string, any> = {
+  Trophy,
+  GitBranch,
+  BarChart2,
+  Calendar,
+};
 
 const BottomNavBar = () => {
   const pathname = usePathname();
@@ -19,18 +31,26 @@ const BottomNavBar = () => {
       role="navigation"
       aria-label="Bottom Navigation"
     >
-      {navItems.map(({ href, label, icon: Icon }) => {
-        const isActive = pathname.startsWith(href);
+      {MOBILE_NAV_ITEMS.map((item) => {
+        const active = isActive(pathname, item);
+        const Icon = ICON_MAP[item.iconName ?? "Trophy"] ?? Trophy;
         return (
           <Link
-            key={href}
-            href={href}
-            className="flex flex-col items-center justify-center flex-1 focus:outline-none py-2 px-3"
-            aria-label={label}
-            tabIndex={0}
+            key={item.href}
+            href={item.href}
+            aria-label={getAriaLabel(item, active)}
+            aria-current={active ? "page" : undefined}
+            className={`flex flex-col items-center justify-center flex-1 py-2 px-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-primary`}
           >
-            <Icon className={`w-5 h-5 mb-1 ${isActive ? "text-white" : "text-text-muted"}`} aria-hidden="true" />
-            <span className={`text-xs ${isActive ? "text-white" : "text-text-muted"}`}>{label}</span>
+            <Icon
+              className={`w-5 h-5 mb-1 ${active ? "text-white" : "text-text-muted"}`}
+              aria-hidden="true"
+            />
+            <span
+              className={`text-xs ${active ? "text-white" : "text-text-muted"}`}
+            >
+              {item.label}
+            </span>
           </Link>
         );
       })}
@@ -38,4 +58,4 @@ const BottomNavBar = () => {
   );
 };
 
-export default BottomNavBar; 
+export default BottomNavBar;

@@ -1,14 +1,14 @@
 "use client";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import type { Variants, MotionProps } from "framer-motion";
-import type { ReactNode, ElementType, RefObject } from "react";
+import type { ReactNode, RefObject, ElementType } from "react";
 
 interface TimelineContentProps extends MotionProps {
   as?: ElementType;
   children: ReactNode;
   animationNum?: number;
-  timelineRef?: RefObject<HTMLElement | null>;
+  timelineRef?: RefObject<HTMLDivElement | null>;
   variants: Variants;
   className?: string;
 }
@@ -22,7 +22,7 @@ const TimelineContent = ({
   className = "",
   ...rest
 }: TimelineContentProps) => {
-  const localRef = useRef<HTMLElement | null>(null);
+  const localRef = useRef<HTMLDivElement | null>(null);
   const ref = timelineRef || localRef;
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -36,7 +36,7 @@ const TimelineContent = ({
       className={className}
       {...rest}
     >
-      <Tag>{children}</Tag>
+{React.createElement(Tag, {}, children)}
     </motion.div>
   );
 };

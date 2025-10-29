@@ -1,0 +1,3 @@
+# Exclude backend folder from Next.js build
+backend/
+

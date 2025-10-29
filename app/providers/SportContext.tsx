@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode } from "react";
 
 interface SportContextType {
   activeSport: string;
@@ -22,7 +22,7 @@ export function SportProvider({ children }: { children: ReactNode }) {
 export function useSport() {
   const context = useContext(SportContext);
   if (context === undefined) {
-    throw new Error('useSport must be used within a SportProvider');
+    throw new Error("useSport must be used within a SportProvider");
   }
   return context;
-} 
+}

@@ -1,7 +1,7 @@
-import PageLayout from '../components/PageLayout';
-import GamesTable from '../components/GamesTable';
-import LiveIndicator from '../components/LiveIndicator';
-import TransitionLayout from '../components/TransitionLayout';
+import PageLayout from "../components/PageLayout";
+import GamesTable from "../components/GamesTable";
+import LiveIndicator from "../components/LiveIndicator";
+import TransitionLayout from "../components/TransitionLayout";
 
 export default function JogosPage() {
   return (
@@ -12,15 +12,15 @@ export default function JogosPage() {
             {/* Header da Página */}
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-xl md:text-2xl font-semibold tracking-tight text-text-primary mb-1 md:mb-2">
+                <h1 className="text-xl md:text-2xl font-semibold tracking-tight text-verde-900 mb-1 md:mb-2">
                   Jogos do Interclasse
                 </h1>
-                <p className="text-xs md:text-sm text-text-secondary">
+                <p className="text-xs md:text-sm text-verde-700">
                   Acompanhe todos os jogos em tempo real
                 </p>
               </div>
             </div>
-            
+
             {/* Tabela de Jogos */}
             <GamesTable />
           </div>
@@ -28,4 +28,4 @@ export default function JogosPage() {
       </PageLayout>
     </TransitionLayout>
   );
-} 
+}

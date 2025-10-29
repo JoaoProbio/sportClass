@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { SportProvider } from "./providers/SportContext";
+import { AuthProvider } from "./providers/AuthContext";
 import ErrorBoundary from "./components/ErrorBoundary";
 import NetworkStatus from "./components/NetworkStatus";
 import AnimatePresenceWrapper from "./components/AnimatePresenceWrapper";
@@ -24,18 +25,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className="dark" suppressHydrationWarning>
+    <html lang="pt-BR" className="light" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         <ErrorBoundary>
-          <SportProvider>
-            <NetworkStatus />
-            <AnimatePresenceWrapper>
-              {children}
-            </AnimatePresenceWrapper>
-          </SportProvider>
+          <AuthProvider>
+            <SportProvider>
+              <NetworkStatus />
+              <AnimatePresenceWrapper>{children}</AnimatePresenceWrapper>
+            </SportProvider>
+          </AuthProvider>
         </ErrorBoundary>
       </body>
     </html>
