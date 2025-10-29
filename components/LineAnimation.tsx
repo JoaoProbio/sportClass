@@ -157,7 +157,13 @@ const LineComponent: React.FC<LineComponentProps> = ({ index, delay }) => {
     setNodes(parts);
   }, [totalChars, allTexts]);
 
-  const startShow = useCallback(() => {
+  // Use refs to hold startShow/startHide implementations so they can call each other
+  // without creating a circular dependency in useCallback deps.
+  const startShowRef = React.useRef<() => void>(() => {});
+  const startHideRef = React.useRef<() => void>(() => {});
+
+  // assign the implementation to the ref (stable identity)
+  startShowRef.current = () => {
     // reset rates
     showRateA.current = 0;
     showRateB.current = 0;
@@ -178,14 +184,21 @@ const LineComponent: React.FC<LineComponentProps> = ({ index, delay }) => {
           showRateB.current = v;
         },
         () => {
-          // after fully shown, schedule hide
-          timeoutId.current = window.setTimeout(startHide, restartDelay);
+          // after fully shown, schedule hide via ref to avoid stale closures
+          timeoutId.current = window.setTimeout(() => {
+            try {
+              startHideRef.current();
+            } catch (e) {
+              // swallow any runtime error to avoid crashing animation loop
+            }
+          }, restartDelay);
         },
       );
     }, animationDuration * 0.6);
-  }, [animateValue, animationDuration, restartDelay]);
+  };
 
-  const startHide = useCallback(() => {
+  // assign hide implementation to ref (calls startShowRef when scheduling next cycle)
+  startHideRef.current = () => {
     // reverse the sweeps
     animateValue(1, 0, animationDuration, Easing.ExpoEaseInOut, (v) => {
       showRateB.current = v;
@@ -198,11 +211,15 @@ const LineComponent: React.FC<LineComponentProps> = ({ index, delay }) => {
       });
     }, animationDuration * 0.5);
 
-    // schedule next show after full hide
+    // schedule next show after full hide via ref
     timeoutId.current = window.setTimeout(() => {
-      startShow();
+      try {
+        startShowRef.current();
+      } catch (e) {
+        // ignore
+      }
     }, animationDuration + restartDelay);
-  }, [animateValue, animationDuration, restartDelay, startShow]);
+  };
 
   useEffect(() => {
     // initialize text blocks once per mount
@@ -230,10 +247,14 @@ const LineComponent: React.FC<LineComponentProps> = ({ index, delay }) => {
       }
     }
 
-    // start the show after configured delay
+    // start the show after configured delay (use ref implementation)
     timeoutId.current = window.setTimeout(
       () => {
-        startShow();
+        try {
+          startShowRef.current();
+        } catch (e) {
+          // ignore
+        }
       },
       Math.max(50, delay),
     );
