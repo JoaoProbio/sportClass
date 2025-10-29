@@ -9,7 +9,6 @@ Um painel administrativo e frontend para gerenciar jogos, jogadores, turmas e ev
 - [Visão Geral](#vis%C3%A3o-geral)
 - [Requisitos](#requisitos)
 - [Instalação & execução local](#instala%C3%A7%C3%A3o--execu%C3%A7%C3%A3o-local)
-- [Principais variáveis de ambiente](#principais-vari%C3%A1veis-de-ambiente)
 - [Scripts úteis](#scripts-%C3%BAteis)
 - [Licença](#licen%C3%A7a)
 
@@ -65,24 +64,6 @@ npm run dev
 npm run build
 npm run start
 ```
-
----
-
-## Principais variáveis de ambiente
-
-Coloque essas variáveis em `.env.local` (não commitar esse arquivo).
-
-- `NEXT_PUBLIC_API_BASE` — URL base do backend (ex.: `https://api.example.com`). Se não definido, o cliente tenta usar `https://mainone-ptsq.onrender.com` como fallback durante o desenvolvimento, mas a configuração correta é recomendada.
-- `NEXT_PUBLIC_API_DEBUG` — `true`|`false`. Quando `true`, o `apiClient` imprime logs detalhados de requisições, alternativas de 404 e tentativas de host fallback. Útil para diagnosticar 404/CORS.
-- `NEXT_PUBLIC_SENTRY_DSN` — (opcional) DSN do Sentry para monitoramento.
-- Outros segredos (tokens, chaves) devem ser configurados conforme ambiente (e não comitados).
-
-Exemplo minimal:
-```
-NEXT_PUBLIC_API_BASE=https://mainone-ptsq.onrender.com
-NEXT_PUBLIC_API_DEBUG=true
-```
-
 ---
 
 ## Scripts úteis (em `package.json`)
