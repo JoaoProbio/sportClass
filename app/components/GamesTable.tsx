@@ -119,8 +119,39 @@ export default function GamesTable({
           genero: "",
         };
 
+        // Normalize score into a consistent display format:
+        // - If `g.score` is a comma-separated set string (e.g. volleyball), keep as-is.
+        // - Otherwise, accept separators '-', 'x', '×' and normalize to 'N - M'.
+        // - If backend provides `placar` object, prefer it.
+        const normalizedScore = (() => {
+          try {
+            // Prefer explicit `placar` object when present (common in admin endpoints)
+            if (g.placar && typeof g.placar === "object") {
+              const l = Number(g.placar.time1 ?? g.placar[0] ?? 0) || 0;
+              const r = Number(g.placar.time2 ?? g.placar[1] ?? 0) || 0;
+              return `${l} - ${r}`;
+            }
+
+            const raw = g.score ?? g.scoreString ?? "";
+            const s = String(raw).trim();
+
+            if (!s) return "0 - 0";
+
+            // If it's a multi-set string (contains comma) keep as-is for detailed views
+            if (s.includes(",")) return s;
+
+            // Otherwise split by common separators and format
+            const parts = s.split(/[-x×]/i).map((p: string) => p.trim());
+            const left = parts[0] || "0";
+            const right = parts[1] || "0";
+            return `${left} - ${right}`;
+          } catch {
+            return "0 - 0";
+          }
+        })();
+
         // Return enriched object with Portuguese fields `time1`/`time2` (used across app),
-        // and also keep `team1`/`team2` for backward compatibility.
+        // also keep `team1`/`team2` for backward compatibility, and expose normalized score.
         return {
           ...g,
           id: resolvedId, // Ensure ID is present
@@ -130,6 +161,10 @@ export default function GamesTable({
           team1: resolvedTime1,
           team2: resolvedTime2,
           modalidade: resolvedModalidade,
+          // normalized display score (e.g. "1 - 0" or "25-20,25-22,20-25")
+          score: normalizedScore,
+          // keep original raw score if present for debugging or detailed views
+          rawScore: g.score ?? null,
         } as Game;
       });
     },

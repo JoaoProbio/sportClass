@@ -11,7 +11,7 @@ interface TransitionLayoutProps {
 
 export default function TransitionLayout({
   children,
-  backgroundColor = "var(--primary-800)",
+  backgroundColor = "var(--primary-100)",
 }: TransitionLayoutProps) {
   const anim = (variants: any, custom: any = null) => {
     return {

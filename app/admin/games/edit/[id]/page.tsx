@@ -169,7 +169,7 @@ export default function EditGame() {
         time1Id: parseInt(formData.time1Id),
         time2Id: parseInt(formData.time2Id),
         modalidadeId: parseInt(formData.modalidadeId),
-        dataHora: formData.dataHora,
+        dataHora: new Date(formData.dataHora).toISOString(),
         local: formData.local,
         descricao: formData.descricao,
       };

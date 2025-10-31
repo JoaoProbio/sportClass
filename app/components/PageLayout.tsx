@@ -56,7 +56,7 @@ export default function PageLayout({ children }: PageLayoutProps) {
 
       {/* Main layout container */}
       <div className="flex max-w-[1320px] mx-auto">
-        <main className="flex-1 p-4 md:p-6 pb-20">{children}</main>
+        <main className="flex-1 p-4 md:p-6 pb-32 md:pb-20">{children}</main>
       </div>
 
       {/* Bottom navigation for mobile */}

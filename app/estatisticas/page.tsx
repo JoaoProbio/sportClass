@@ -49,15 +49,6 @@ export default function EstatisticasPage() {
                   A seção de Estatísticas está sendo melhorada. Dados e
                   visualizações adicionais serão disponibilizados em breve.
                 </p>
-
-                <div className="mt-3 flex flex-wrap gap-2">
-                  <span className="inline-flex items-center gap-2 rounded-full bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800">
-                    Sugestão: exportar relatório
-                  </span>
-                  <span className="inline-flex items-center gap-2 rounded-full bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800">
-                    Em breve: filtros avançados
-                  </span>
-                </div>
               </div>
             </div>
           </div>

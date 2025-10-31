@@ -206,12 +206,61 @@ export default function ManageGame() {
         let page = 1;
         let morePages = true;
 
+        // Safety guard to prevent accidental infinite pagination loops.
+        const MAX_PAGES = 50; // maximum number of pages to fetch
+        let pagesFetched = 0;
+
+        console.debug("Players pagination starting", { pageSize, MAX_PAGES });
+
         while (morePages) {
+          // Increment guard and break if exceeded
+          pagesFetched += 1;
+          if (pagesFetched > MAX_PAGES) {
+            console.warn(
+              "Players pagination aborted: reached MAX_PAGES guard",
+              { pageSize, MAX_PAGES, pagesFetched, lastPageAttempted: page },
+            );
+            break;
+          }
+
           try {
+            console.debug("Players pagination fetching page", {
+              page,
+              pagesFetched,
+            });
             const res = await api.get(
               `/api/players?page=${page}&pageSize=${pageSize}`,
             );
             const body = res?.data ?? res ?? {};
+
+            // Log shape of response for diagnostics (avoid heavy dumps)
+            try {
+              if (Array.isArray(body)) {
+                console.debug("Players pagination got array body", {
+                  page,
+                  length: body.length,
+                });
+              } else if (body && typeof body === "object") {
+                const sampleCount = Array.isArray(body.data)
+                  ? body.data.length
+                  : Array.isArray(body.players)
+                    ? body.players.length
+                    : undefined;
+                console.debug("Players pagination got object body", {
+                  page,
+                  keys: Object.keys(body).slice(0, 10),
+                  sampleCount,
+                });
+              } else {
+                console.debug("Players pagination got unexpected body type", {
+                  page,
+                  bodyType: typeof body,
+                });
+              }
+            } catch (logErr) {
+              // Continue even if logging inspection fails
+              console.debug("Players pagination debug-inspect failed", logErr);
+            }
 
             if (Array.isArray(body)) {
               fetchedPlayersRaw.push(...body);
@@ -233,11 +282,16 @@ export default function ManageGame() {
 
             if (pageData) {
               fetchedPlayersRaw.push(...pageData);
+              // If pagination metadata present, use it to detect last page
               if (
                 pagination &&
                 typeof pagination.currentPage !== "undefined" &&
                 typeof pagination.totalPages !== "undefined"
               ) {
+                console.debug("Players pagination metadata", {
+                  currentPage: pagination.currentPage,
+                  totalPages: pagination.totalPages,
+                });
                 if (
                   Number(pagination.currentPage) >=
                   Number(pagination.totalPages)
@@ -257,6 +311,10 @@ export default function ManageGame() {
               continue;
             }
 
+            // No recognizable data in response — stop pagination
+            console.debug("Players pagination stopping: no page data found", {
+              page,
+            });
             morePages = false;
           } catch (pageErr: any) {
             console.debug(
@@ -264,6 +322,7 @@ export default function ManageGame() {
               page,
               pageErr?.message ?? pageErr,
             );
+            // On errors, stop pagination to avoid repeated failing requests
             morePages = false;
             break;
           }
@@ -469,7 +528,7 @@ export default function ManageGame() {
           placarTime2: String(enriched?.placar?.time2 ?? 0),
         });
       } else {
-        setError(error || "Jogo não encontrado ou dados da API inválidos.");
+        setError("Jogo não encontrado ou dados da API inválidos.");
         setGame(null);
       }
     } catch (err: any) {
@@ -480,7 +539,7 @@ export default function ManageGame() {
     } finally {
       setIsLoading(false);
     }
-  }, [gameId, token, enrichGame, error]);
+  }, [gameId, token, enrichGame]);
 
   useEffect(() => {
     loadData();
@@ -1017,7 +1076,10 @@ export default function ManageGame() {
                             )?.nome ??
                             "";
                           return (
-                            <SelectItem key={p.id} value={String(p.id)}>
+                            <SelectItem
+                              key={`${p.id}-${String(p._resolvedTimeId ?? p.timeId ?? "")}`}
+                              value={String(p.id)}
+                            >
                               {p.nome}
                               {teamName ? ` — ${teamName}` : ""}
                               {p.numeroCamisa ? ` (${p.numeroCamisa})` : ""}
@@ -1068,7 +1130,10 @@ export default function ManageGame() {
                                 )?.nome ??
                                 "";
                               return (
-                                <SelectItem key={p.id} value={String(p.id)}>
+                                <SelectItem
+                                  key={`${p.id}-${String(p._resolvedTimeId ?? p.timeId ?? "")}`}
+                                  value={String(p.id)}
+                                >
                                   {p.nome}
                                   {teamName ? ` — ${teamName}` : ""}
                                   {p.numeroCamisa ? ` (${p.numeroCamisa})` : ""}

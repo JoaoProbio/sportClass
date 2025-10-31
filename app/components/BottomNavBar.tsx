@@ -13,6 +13,7 @@ import { MOBILE_NAV_ITEMS, isActive, getAriaLabel } from "./navConfig";
  * - Uses centralized `isActive` logic so highlighting matches the header.
  * - Improved accessibility: explicit aria-current when active, clearer labels
  *   and focusable areas.
+ * - Includes visual project identifier badge at the top
  */
 
 const ICON_MAP: Record<string, any> = {
@@ -27,33 +28,47 @@ const BottomNavBar = () => {
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 z-50 bg-background flex justify-around items-center h-16 md:hidden"
+      className="fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-border-subtle"
       role="navigation"
       aria-label="Bottom Navigation"
     >
-      {MOBILE_NAV_ITEMS.map((item) => {
-        const active = isActive(pathname, item);
-        const Icon = ICON_MAP[item.iconName ?? "Trophy"] ?? Trophy;
-        return (
-          <Link
-            key={item.href}
-            href={item.href}
-            aria-label={getAriaLabel(item, active)}
-            aria-current={active ? "page" : undefined}
-            className={`flex flex-col items-center justify-center flex-1 py-2 px-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-primary`}
-          >
-            <Icon
-              className={`w-5 h-5 mb-1 ${active ? "text-white" : "text-text-muted"}`}
-              aria-hidden="true"
-            />
-            <span
-              className={`text-xs ${active ? "text-white" : "text-text-muted"}`}
+      {/* Navigation Items */}
+      <div className="flex justify-around items-center h-16 md:hidden bg-background">
+        {MOBILE_NAV_ITEMS.map((item) => {
+          const active = isActive(pathname, item);
+          const Icon = ICON_MAP[item.iconName ?? "Trophy"] ?? Trophy;
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-label={getAriaLabel(item, active)}
+              aria-current={active ? "page" : undefined}
+              className={`flex flex-col items-center justify-center flex-1 py-2 px-3 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-primary ${
+                active
+                  ? "bg-primary-500/10 shadow-sm"
+                  : "hover:bg-background-card/50"
+              }`}
             >
-              {item.label}
-            </span>
-          </Link>
-        );
-      })}
+              <div
+                className={`w-6 h-6 mb-1 flex items-center justify-center rounded-lg transition-all duration-200 ${
+                  active
+                    ? "bg-primary-500/20 text-primary-600"
+                    : "text-text-muted group-hover:text-text-primary"
+                }`}
+              >
+                <Icon className="w-5 h-5" aria-hidden="true" />
+              </div>
+              <span
+                className={`text-xs font-medium transition-colors duration-200 ${
+                  active ? "text-primary-600 font-semibold" : "text-text-muted"
+                }`}
+              >
+                {item.label}
+              </span>
+            </Link>
+          );
+        })}
+      </div>
     </nav>
   );
 };

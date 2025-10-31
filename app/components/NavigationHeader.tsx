@@ -62,7 +62,7 @@ export default function NavigationHeader() {
                     aria-label={getAriaLabel(item, active)}
                     aria-current={active ? "page" : undefined}
                     role="menuitem"
-                    className={`text-sm transition inline-block px-2 py-1 rounded ${
+                    className={`text-sm transition inline-block tracking-tighter uppercase px-2 py-1 rounded ${
                       active
                         ? "text-text-primary font-semibold"
                         : "text-text-secondary hover:text-text-primary hover:bg-background-card"
