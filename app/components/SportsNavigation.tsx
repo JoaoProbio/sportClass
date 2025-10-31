@@ -59,7 +59,7 @@ export default function SportsNavigation({
   ];
 
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const tabRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
+  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const [bg, setBg] = useState<{
     left: number;
     width: number;
@@ -145,7 +145,9 @@ export default function SportsNavigation({
           return (
             <button
               key={id}
-              ref={(el) => (tabRefs.current[id] = el)}
+              ref={(el) => {
+                tabRefs.current[id] = el;
+              }}
               type="button"
               aria-pressed={isActive}
               onClick={() => handleSportClick(id)}
